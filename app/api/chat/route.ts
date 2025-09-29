@@ -2,7 +2,7 @@ import { google } from "@ai-sdk/google"
 import { generateText } from "ai"
 import { type NextRequest, NextResponse } from "next/server"
 
-const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY || "AIzaSyBolVvCs-Nf0P5oE7P7bPYUz1OuDDPYT8s"
+const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY || "AIzaSyBX95EfyVhH-0LRepIbcxRWLlEv-JMgo2g"
 const TAVILY_API_KEY = "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"
 
 interface TavilySearchResult {
@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
 
     if (searchResults.length === 0) {
       const { text } = await generateText({
-        model: google("gemini-1.5-flash", {
+        model: google("gemini-2.5-flash", {
           apiKey: GEMINI_API_KEY,
         }),
         prompt: `The user asked about "${message}" in mathematics. No new articles were found. Provide educational insights about this mathematical topic, why it's important, and suggestions for learning more. Keep it under 200 words and focus on mathematics education.`,
@@ -251,7 +251,7 @@ Guidelines:
 User's mathematics question: "${userQuery}"`
 
     const { text: aiResponse } = await generateText({
-      model: google("gemini-1.5-flash", {
+      model: google("gemini-2.5-flash", {
         apiKey: GEMINI_API_KEY,
       }),
       prompt: geminiPrompt,

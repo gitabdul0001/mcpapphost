@@ -2,7 +2,7 @@ import { google } from "@ai-sdk/google"
 import { generateText } from "ai"
 import { type NextRequest, NextResponse } from "next/server"
 
-const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY || "AIzaSyBolVvCs-Nf0P5oE7P7bPYUz1OuDDPYT8s"
+const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY || "AIzaSyBX95EfyVhH-0LRepIbcxRWLlEv-JMgo2g"
 
 interface ChatMessage {
   role: "user" | "assistant"
@@ -51,7 +51,7 @@ ${conversationContext ? `Previous conversation:\n${conversationContext}\n` : ""}
 User's current question: "${message}"`
 
     const { text: aiResponse } = await generateText({
-      model: google("gemini-1.5-flash", {
+      model: google("gemini-2.5-flash", {
         apiKey: GEMINI_API_KEY,
       }),
       prompt: systemPrompt,
